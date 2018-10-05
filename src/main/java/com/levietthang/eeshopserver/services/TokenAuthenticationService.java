@@ -43,8 +43,9 @@ public class TokenAuthenticationService {
         try {
             JWT = com.auth0.jwt.JWT
                     .create()
-                    .withClaim("username", authResult.getName())
+                    .withClaim("userName", authResult.getName())
                     .withClaim("createAt", dtStart)
+                    .withClaim("isLogedIn", true)
                     .withSubject(objectMapper.writeValueAsString(data))
                     .withExpiresAt(dt).sign(Algorithm.HMAC512(SECRET));
         } catch (UnsupportedEncodingException e) {
