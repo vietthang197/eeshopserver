@@ -10,53 +10,49 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity(name = "user_details")
-@Table(name = "user_details", indexes = {@Index(name = "EMP_EMAIL_INDEX", columnList = "id,email")})
+@Table(name = "user_details", indexes = {@Index(name = "EMP_ID_INDEX", columnList = "id")})
 public class UserDetails implements Serializable {
 
     @Id
     @Column(name = "id")
-    public int userId;
+    private int userId;
 
     @Column
-    public String name;
-
-    @Column(unique = true)
-    public String email;
+    private String name;
 
     @Column
-    public Date birthday;
+    private Date birthday;
 
     @Column
-    public String phone;
+    private String phone;
 
     @Column
-    public String countryId;
+    private String countryId;
 
     @Column
-    public String address1;
+    private String address1;
 
     @Column
-    public String address2;
+    private String address2;
 
     @Column
-    public String tinhId;
+    private String tinhId;
 
-    @Column String huyenId;
+    @Column
+    private String huyenId;
 
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, optional = false)
     @JoinColumn(name = "id")
-    @MapsId
     private User user;
 
 
     public UserDetails() {
     }
 
-    public UserDetails(int userId, String name, String email, Date birthday, String phone, String countryId, String address1, String address2, String tinhId, String huyenId) {
+    public UserDetails(int userId, String name, Date birthday, String phone, String countryId, String address1, String address2, String tinhId, String huyenId) {
         this.userId = userId;
         this.name = name;
-        this.email = email;
         this.birthday = birthday;
         this.phone = phone;
         this.countryId = countryId;
@@ -130,27 +126,11 @@ public class UserDetails implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

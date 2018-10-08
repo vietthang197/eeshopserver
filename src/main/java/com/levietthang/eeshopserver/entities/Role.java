@@ -19,7 +19,7 @@ public class Role implements Serializable {
     @NotNull
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<User> users = new HashSet<>();
 
     public Role() {

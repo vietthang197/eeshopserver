@@ -17,7 +17,7 @@ public class RoleRepositoryImpl implements CustomRoleRepository {
     @Override
     public Set<Role> findRoleByName(String name) {
         List<Role> roles = entityManager
-                .createNativeQuery("SELECT r.* FROM public.role r WHERE r.name = ?1", Role.class)
+                .createNativeQuery("SELECT r.* FROM role r WHERE r.name = ?1", Role.class)
                 .getResultList();
         if(!roles.isEmpty()) {
             Set<Role> roleSet = new HashSet<Role>(roles);

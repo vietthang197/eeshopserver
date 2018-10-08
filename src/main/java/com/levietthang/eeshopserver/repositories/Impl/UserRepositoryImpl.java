@@ -20,37 +20,5 @@ public class UserRepositoryImpl  implements CustomUserRepository {
 
     @Autowired
     private EntityManager entityManager;
-
-    @Override
-    public User findUserByEmail(String email) {
-        List<User> users = entityManager
-                .createNativeQuery("SELECT u.* FROM user u INNER JOIN user_details ud ON u.id = ud.id WHERE ud.email= ?1", User.class)
-                .setParameter(1, email)
-                .getResultList();
-        if(!users.isEmpty()){
-            return users.get(0);
-        }
-        return null;
-    }
-
-    @Override
-    public User findUserByUsername(String username) {
-        List<User> users =  entityManager
-                .createNativeQuery("SELECT u.* FROM user u WHERE u.username = ?1", User.class)
-                .setParameter(1, username)
-                .getResultList();
-        if(!users.isEmpty()){
-            return users.get(0);
-        }
-        return null;
-    }
-
-    @Override
-    public boolean checkExistsUsername(String username) {
-        BigInteger count = (BigInteger) entityManager.createNativeQuery("SELECT COUNT(u.id) FROM user u WHERE u.username = ?1")
-                .setParameter(1, username)
-                .getSingleResult();
-
-        return count.longValue() == 0 ? false: true;
-    }
+    
 }

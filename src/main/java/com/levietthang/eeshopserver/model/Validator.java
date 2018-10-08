@@ -24,6 +24,10 @@ public class Validator{
         return pattern.matcher(email).matches();
     }
 
+    public static boolean validateMathPassword(String password, String confirmPassword) {
+        return password.equals(confirmPassword);
+    }
+
     public static boolean validateUserRegisterDTO(UserRegisterDTO userRegisterDTO) {
         return  validateUsername(userRegisterDTO.getUsername())
                 && validatePassword(userRegisterDTO.getPassword())

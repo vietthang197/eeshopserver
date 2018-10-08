@@ -56,12 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and();
         http.csrf().disable().authorizeRequests()
+                .antMatchers("/api/role/create").permitAll()
+                .antMatchers("/api/role/set-admin-role").permitAll()
                 .antMatchers("/api/products/list-all-product").permitAll()
                 .antMatchers("/validate-form/check-exists-username").permitAll()
                 .antMatchers("/validate-form/check-exists-email").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/register").permitAll()
-                .antMatchers("/user/**").hasAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/api/user/register").permitAll()
+                .antMatchers("api/user/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority(("ADMIN"))
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().and()
