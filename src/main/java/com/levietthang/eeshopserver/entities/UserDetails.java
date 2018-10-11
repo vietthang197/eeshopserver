@@ -6,6 +6,7 @@ import org.springframework.hateoas.core.Relation;
 
 import javax.persistence.*;
 import javax.validation.Constraint;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -27,19 +28,10 @@ public class UserDetails implements Serializable {
     private String phone;
 
     @Column
-    private String countryId;
-
-    @Column
     private String address1;
 
     @Column
     private String address2;
-
-    @Column
-    private String tinhId;
-
-    @Column
-    private String huyenId;
 
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, optional = false)
@@ -50,16 +42,13 @@ public class UserDetails implements Serializable {
     public UserDetails() {
     }
 
-    public UserDetails(int userId, String name, Date birthday, String phone, String countryId, String address1, String address2, String tinhId, String huyenId) {
+    public UserDetails(int userId, String name, Date birthday, String phone, String countryId, String address1, String address2, String tinhId) {
         this.userId = userId;
         this.name = name;
         this.birthday = birthday;
         this.phone = phone;
-        this.countryId = countryId;
         this.address1 = address1;
         this.address2 = address2;
-        this.tinhId = tinhId;
-        this.huyenId = huyenId;
     }
 
     public String getPhone() {
@@ -68,14 +57,6 @@ public class UserDetails implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
     }
 
     public String getAddress1() {
@@ -92,22 +73,6 @@ public class UserDetails implements Serializable {
 
     public void setAddress2(String address2) {
         this.address2 = address2;
-    }
-
-    public String getTinhId() {
-        return tinhId;
-    }
-
-    public void setTinhId(String tinhId) {
-        this.tinhId = tinhId;
-    }
-
-    public String getHuyenId() {
-        return huyenId;
-    }
-
-    public void setHuyenId(String huyenId) {
-        this.huyenId = huyenId;
     }
 
     public int getUserId() {

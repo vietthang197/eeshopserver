@@ -77,9 +77,6 @@ public class UserServiceImpl implements CustomUserService, Constant {
                 userDetails.setAddress1(userRegisterDTO.getAddress1());
                 userDetails.setAddress2(userRegisterDTO.getAddress2());
                 userDetails.setPhone(userRegisterDTO.getPhone());
-                userDetails.setCountryId(userRegisterDTO.getCountryId());
-                userDetails.setHuyenId(userRegisterDTO.getHuyenId());
-                userDetails.setTinhId(userRegisterDTO.getTinhId());
 
                 userDetailsRepository.save(userDetails);
                 return new RegisterStatus(true, Constant.REGISTER_SUCCESS);

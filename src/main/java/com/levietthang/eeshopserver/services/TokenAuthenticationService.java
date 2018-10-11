@@ -37,7 +37,7 @@ public class TokenAuthenticationService {
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
         c.add(Calendar.DATE, 1);
-        dt = c.getTime();
+        Date dt1 = c.getTime();
         String JWT = null;
         List<GrantedAuthority> data = (List<GrantedAuthority>) authResult.getAuthorities();
         try {
@@ -47,7 +47,7 @@ public class TokenAuthenticationService {
                     .withClaim("createAt", dtStart)
                     .withClaim("isLogedIn", true)
                     .withSubject(objectMapper.writeValueAsString(data))
-                    .withExpiresAt(dt).sign(Algorithm.HMAC512(SECRET));
+                    .withExpiresAt(dt1).sign(Algorithm.HMAC512(SECRET));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e) {
