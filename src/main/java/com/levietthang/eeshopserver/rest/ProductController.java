@@ -21,8 +21,11 @@ public class ProductController {
         return productService.getListAllProduct();
     }
 
-    @PostMapping("/save-product")
+    @PostMapping("/create-product")
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
+
+    @PutMapping("/update-product")
+    public Product updateProduct(@RequestBody Product product) { return productService.updateProduct(product); }
 }

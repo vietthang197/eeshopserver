@@ -28,7 +28,7 @@ import java.util.*;
 public class TokenAuthenticationService {
     private static String randomString = "k`!jfj!fj#23af^h((&&)(UY_HFH@#$%&^*()...adfafdh";
     private static String SECRET = Base64.getEncoder().encodeToString(randomString.getBytes());
-    private static final String HEADER_STRING = "Authorization";
+    private static final String HEADER_STRING = "authorization";
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void addAuthentication(HttpServletResponse res, Authentication authResult) {
@@ -79,7 +79,7 @@ public class TokenAuthenticationService {
                 JWTVerifier verifier = JWT.require(algorithm)
                         .build();
                 DecodedJWT jwt = verifier.verify(token);
-                username = jwt.getClaim("username").asString();
+                username = jwt.getClaim("userName").asString();
                 String authorities = jwt.getSubject();
                 authorityList = objectMapper.readValue(authorities, new TypeReference<List<UserGrantedAuthority>>(){});
             }catch (SignatureException e){
